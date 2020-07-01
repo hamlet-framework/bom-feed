@@ -28,7 +28,7 @@ class MappingTest extends TestCase
     public function testStationsListIsComplete()
     {
         $stations = require_once(__DIR__ . '/../scripts/get-all-ids.php');
-        foreach ($stations as $key => $name) {
+        foreach ($stations as $key => list($_, $name)) {
             $this->assertArrayHasKey($key, self::$all);
             $this->assertEquals($name, self::$all[$key]->name());
         }

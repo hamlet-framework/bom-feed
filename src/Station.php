@@ -14,7 +14,7 @@ use function Hamlet\Cast\_union;
 
 class Station
 {
-    public const EARTH_RADIUS = 6371000;
+    const EARTH_RADIUS = 6371000;
 
     /** @var string */
     private $key;

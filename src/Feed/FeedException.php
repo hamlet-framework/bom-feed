@@ -2,8 +2,8 @@
 
 namespace Hamlet\BureauOfMeteorology\Feed;
 
-use Exception;
+use RuntimeException;
 
-class FeedException extends Exception
+class FeedException extends RuntimeException
 {
 }

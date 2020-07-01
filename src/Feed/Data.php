@@ -2,7 +2,7 @@
 
 namespace Hamlet\BureauOfMeteorology\Feed;
 
-class FeedData
+class Data
 {
     /**
      * @var int

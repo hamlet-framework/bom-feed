@@ -2,7 +2,7 @@
 
 namespace Hamlet\BureauOfMeteorology\Feed;
 
-class FeedHeader
+class Header
 {
     /**
      * @var string

@@ -5,10 +5,10 @@
 
 $station = Stations::closestTo(100.0, 200.0, 1)[0];
 
-$observations = $station->observations();
+$observations = $station->feed();
 ```
 
 ## To do
 
-- Parse air pressure readings
 - Add travis CI integration
+- Add closest to calculations

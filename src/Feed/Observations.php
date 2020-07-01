@@ -2,20 +2,20 @@
 
 namespace Hamlet\BureauOfMeteorology\Feed;
 
-class FeedObservations
+class Observations
 {
     /**
-     * @var FeedNotice[]
+     * @var Notice[]
      */
     public $notice;
 
     /**
-     * @var FeedHeader[]
+     * @var Header[]
      */
     public $header;
 
     /**
-     * @var FeedData[]
+     * @var Data[]
      */
     public $data;
 }

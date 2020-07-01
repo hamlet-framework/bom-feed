@@ -1,5 +1,7 @@
 # Hamlet Framework / Australian Bureau of Meteorology Feed
 
+[![Build Status](https://travis-ci.org/hamlet-framework/bom-feed.svg)](https://travis-ci.org/hamlet-framework/bom-feed)
+
 This library:
 
 - Provides an up-to-date list of all weather stations of Australian BoM,

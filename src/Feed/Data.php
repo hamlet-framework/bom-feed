@@ -136,7 +136,7 @@ class Data
 
     /**
      * @var string|null
-     * @psalm-var '-'|'E'|'SE'|'SW'|'NE'|'W'|'S'
+     * @psalm-var 'E'|'ENE'|'ESE'|'N'|'NE'|'NNE'|'NNW'|'NW'|'S'|'SE'|'SSE'|'SSW'|'SW'|'W'|'WNW'|'WSW'|'-'
      */
     public $swell_dir_worded;
 

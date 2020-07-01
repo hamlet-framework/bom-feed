@@ -22,4 +22,13 @@ class MappingTest extends TestCase
             $this->assertTrue(true);
         }
     }
+
+    public function testClosestTo()
+    {
+        $stations = Stations::closestTo(-37.81, 144.96, 5);
+        $names = array_map(function (Station $station): string {
+            return $station->name();
+        }, $stations);
+        $this->assertEquals([], $names);
+    }
 }

@@ -21,10 +21,19 @@ class Stations
         if (empty(self::$stations)) {
             foreach (file(__DIR__ . '/stations.csv') as $line) {
                 list($key, $name, $latitude, $longitude) = explode(',', $line, 2);
-                self::$stations[] = new Station(trim($key), trim($name), (float) $latitude, (float) $longitude);
+                self::$stations[$key] = new Station($key, $name, (float) $latitude, (float) $longitude);
             }
         }
         return self::$stations;
+    }
+
+    /**
+     * @param string $key
+     * @return Station|null
+     */
+    public static function byKey(string $key)
+    {
+        return self::all()[$key] ?? null;
     }
 
     /**
@@ -33,7 +42,7 @@ class Stations
      * @param int $count
      * @return Station[]
      */
-    public function closestTo(float $latitude, float $longitude, int $count)
+    public static function closestTo(float $latitude, float $longitude, int $count)
     {
         $distances = [];
         foreach (self::all() as $station) {

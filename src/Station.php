@@ -36,6 +36,11 @@ class Station
         $this->longitude = $longitude;
     }
 
+    public function key(): string
+    {
+        return $this->key;
+    }
+
     public function name(): string
     {
         return $this->name;

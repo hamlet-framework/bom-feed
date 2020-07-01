@@ -136,7 +136,7 @@ class Data
 
     /**
      * @var string|null
-     * @psalm-var 'E'|'ENE'|'ESE'|'N'|'NE'|'NNE'|'NNW'|'NW'|'S'|'SE'|'SSE'|'SSW'|'SW'|'W'|'WNW'|'WSW'|'-'
+     * @psalm-var 'E'|'ENE'|'ESE'|'N'|'NE'|'NNE'|'NNW'|'NS'|'NW'|'S'|'SE'|'SSE'|'SSW'|'SW'|'W'|'WNW'|'WSW'|'-'
      */
     public $swell_dir_worded;
 
@@ -163,7 +163,7 @@ class Data
 
     /**
      * @var string
-     * @psalm-var 'CALM'|'E'|'ENE'|'ESE'|'N'|'NE'|'NNE'|'NNW'|'NW'|'S'|'SE'|'SSE'|'SSW'|'SW'|'W'|'WNW'|'WSW'|'-'
+     * @psalm-var 'CALM'|'E'|'ENE'|'ESE'|'N'|'NE'|'NNE'|'NNW'|'NS'|'NW'|'S'|'SE'|'SSE'|'SSW'|'SW'|'W'|'WNW'|'WSW'|'-'
      */
     public $wind_dir;
 

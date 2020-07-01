@@ -6,20 +6,31 @@ use PHPUnit\Framework\TestCase;
 
 class MappingTest extends TestCase
 {
-    public function testAllStations()
+    /**
+     * @var Station[]
+     */
+    private static $all = [];
+
+    public static function setUpBeforeClass()
     {
-        $stations = Stations::all();
+        self::$all = Stations::all();
+        parent::setUpBeforeClass();
+    }
 
-        foreach($stations as $station) {
-            $feed = $station->feed();
-
-            $latitude  = $feed->observations->data[0]->lat;
-            $longitude = $feed->observations->data[0]->lon;
-
-            $this->assertEquals($latitude,  $station->latitude());
-            $this->assertEquals($longitude, $station->longitude());
-
+    public function testFieldMapping()
+    {
+        foreach(self::$all as $station) {
+            $station->feed();
             $this->assertTrue(true);
+        }
+    }
+
+    public function testStationsListIsComplete()
+    {
+        $stations = require_once(__DIR__ . '/../scripts/get-all-ids.php');
+        foreach ($stations as $key => $name) {
+            $this->assertArrayHasKey($key, self::$all);
+            $this->assertEquals($name, self::$all[$key]->name());
         }
     }
 
@@ -29,6 +40,12 @@ class MappingTest extends TestCase
         $names = array_map(function (Station $station): string {
             return $station->name();
         }, $stations);
-        $this->assertEquals([], $names);
+        $this->assertEquals([
+            'Melbourne (Olympic Park)',
+            'St Kilda Harbour RMYS',
+            'Essendon Airport',
+            'Viewbank',
+            'Fawkner Beacon',
+        ], $names);
     }
 }

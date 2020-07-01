@@ -6,6 +6,7 @@ class Stations
 {
     /**
      * @var Station[]
+     * @psalm-var array<string,Station>
      */
     private static $stations = [];
 
@@ -20,7 +21,7 @@ class Stations
     {
         if (empty(self::$stations)) {
             foreach (file(__DIR__ . '/stations.csv') as $line) {
-                list($key, $name, $latitude, $longitude) = explode(',', $line, 2);
+                list($key, $name, $latitude, $longitude) = explode(',', $line);
                 self::$stations[$key] = new Station($key, $name, (float) $latitude, (float) $longitude);
             }
         }

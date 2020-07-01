@@ -92,10 +92,10 @@ class Station
         $latitude1  = deg2rad($this->latitude);
         $longitude1 = deg2rad($this->longitude);
 
-        $lonDelta = $longitude1 - $longitude0;
-        $a = pow(cos($latitude1) * sin($lonDelta), 2) +
-             pow(cos($latitude0) * sin($latitude1) - sin($latitude0) * cos($latitude1) * cos($lonDelta), 2);
-        $b = sin($latitude0) * sin($latitude1) + cos($latitude0) * cos($latitude1) * cos($lonDelta);
+        $longitudeDelta = $longitude1 - $longitude0;
+        $a = pow(cos($latitude1) * sin($longitudeDelta), 2) +
+             pow(cos($latitude0) * sin($latitude1) - sin($latitude0) * cos($latitude1) * cos($longitudeDelta), 2);
+        $b = sin($latitude0) * sin($latitude1) + cos($latitude0) * cos($latitude1) * cos($longitudeDelta);
 
         $angle = atan2(sqrt($a), $b);
         return $angle * self::EARTH_RADIUS;

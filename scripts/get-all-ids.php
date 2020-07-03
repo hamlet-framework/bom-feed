@@ -1,7 +1,5 @@
 <?php
 
-use Hamlet\BureauOfMeteorology\Station;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $urls = [

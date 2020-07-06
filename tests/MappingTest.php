@@ -33,8 +33,8 @@ class MappingTest extends TestCase
 
             $station = self::$all[$key];
             $this->assertEquals($name, $station->name());
-            $this->assertEquals($latitude, $station->latitude());
-            $this->assertEquals($longitude, $station->longitude());
+            $this->assertEqualsWithDelta($latitude, $station->latitude(), 0.01);
+            $this->assertEqualsWithDelta($longitude, $station->longitude(), 0.01);
         }
     }
 

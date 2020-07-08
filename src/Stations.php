@@ -16,13 +16,14 @@ class Stations
 
     /**
      * @return Station[]
+     * @psalm-return array<string,Station>
      */
     public static function all(): array
     {
         if (empty(self::$stations)) {
             foreach (file(__DIR__ . '/stations.csv') as $line) {
-                list($key, $name, $latitude, $longitude) = explode(',', $line);
-                self::$stations[$key] = new Station($key, $name, (float) $latitude, (float) $longitude);
+                list($key, $name, $latitude, $longitude, $height) = explode(',', $line);
+                self::$stations[$key] = new Station($key, $name, (float) $latitude, (float) $longitude, (float) $height);
             }
         }
         return self::$stations;

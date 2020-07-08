@@ -1,5 +1,7 @@
 <?php
 
+use Hamlet\BureauOfMeteorology\Stations;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $urls = [
@@ -14,6 +16,9 @@ $urls = [
 ];
 
 $stations = [];
+foreach (Stations::all() as $station) {
+    $stations[$station->key()] = [$station->key(), $station->name(), $station->latitude(), $station->longitude(), $station->height()];
+}
 foreach ($urls as $url) {
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, $url);

@@ -14,3 +14,7 @@ This library:
 $station = Stations::closestTo(100.0, 200.0, 1)[0];
 $feed = $station->feed();
 ```
+
+### Todo:
+
+- Use PSR-18 instead of curl

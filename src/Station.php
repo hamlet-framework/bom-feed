@@ -28,12 +28,16 @@ class Station
     /** @var float */
     private $longitude;
 
-    public function __construct(string $key, string $name, float $latitude, float $longitude)
+    /** @var float */
+    private $height;
+
+    public function __construct(string $key, string $name, float $latitude, float $longitude, float $height)
     {
         $this->key = $key;
         $this->name = $name;
         $this->latitude = $latitude;
         $this->longitude = $longitude;
+        $this->height = $height;
     }
 
     public function key(): string
@@ -54,6 +58,11 @@ class Station
     public function longitude(): float
     {
         return $this->longitude;
+    }
+
+    public function height(): float
+    {
+        return $this->height;
     }
 
     public function feedUrl(): string

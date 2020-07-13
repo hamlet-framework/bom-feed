@@ -80,12 +80,13 @@ class Station
         $content = curl_exec($handle);
         curl_close($handle);
 
-        if (!is_string($content)) {
+        if (!is_string($content) || empty($content)) {
             throw new FeedException('No content for ' . $url);
         }
         $data = _union(_list(_mixed()), _null())->cast(json_decode($content, true));
         if ($data === null) {
-            throw new FeedException(json_last_error_msg(), json_last_error());
+            echo $content;
+            throw new FeedException('Invalid feed content for ' . $url . '. ' .json_last_error_msg(), json_last_error());
         }
         try {
             return JsonMapper::map(_class(Envelope::class), $data);

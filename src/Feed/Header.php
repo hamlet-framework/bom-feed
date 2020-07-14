@@ -41,7 +41,7 @@ class Header
 
     /**
      * @var string
-     * @psalm-var 'Northern Territory'|'New South Wales'|'South Australia'|'Western Australia'|'Tasmania'|'Queensland'|'Victoria'|'Antarctica'
+     * @psalm-var 'Northern Territory'|'New South Wales'|'South Australia'|'Western Australia'|'Tasmania'|'Queensland'|'Victoria'|'Aust Capital Territory'|'Antarctica'
      */
     public $state;
 }

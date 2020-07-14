@@ -50,7 +50,7 @@ class Data
     public $lon;
 
     /**
-     * @var int|float
+     * @var int|float|null
      */
     public $apparent_t;
 

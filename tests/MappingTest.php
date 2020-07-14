@@ -19,7 +19,8 @@ class MappingTest extends TestCase
 
     public function testFieldMapping()
     {
-        foreach(self::$all as $station) {
+        for ($i = 0; $i < 100; $i++) {
+            $station = self::$all[array_rand(self::$all)];
             $station->feed();
             $this->assertTrue(true);
         }

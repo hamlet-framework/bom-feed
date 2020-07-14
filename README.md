@@ -18,3 +18,5 @@ $feed = $station->feed();
 ### Todo:
 
 - Use PSR-18 instead of curl
+- Read through this: http://www.bom.gov.au/catalogue/anon-ftp.shtml
+- Take descriptions from https://mran.microsoft.com/snapshot/2018-02-12/web/packages/bomrang/vignettes/bomrang.html

@@ -13,6 +13,21 @@ $urls = [
     'http://www.bom.gov.au/tas/observations/tasall.shtml',
     'http://www.bom.gov.au/nt/observations/ntall.shtml',
     'http://www.bom.gov.au/ant/observations/antall.shtml',
+    'http://www.bom.gov.au/nsw/observations/coastal.shtml',
+    'http://www.bom.gov.au/nt/observations/coastal.shtml',
+    'http://www.bom.gov.au/qld/observations/coastal.shtml',
+    'http://www.bom.gov.au/sa/observations/coastal.shtml',
+    'http://www.bom.gov.au/tas/observations/coastal.shtml',
+    'http://www.bom.gov.au/vic/observations/coastal.shtml',
+    'http://www.bom.gov.au/wa/observations/coastal.shtml',
+    'http://reg.bom.gov.au/act/observations/canberra.shtml',
+    'http://reg.bom.gov.au/nsw/observations/sydney.shtml',
+    'http://reg.bom.gov.au/nt/observations/darwin.shtml',
+    'http://reg.bom.gov.au/qld/observations/brisbane.shtml',
+    'http://reg.bom.gov.au/sa/observations/adelaide.shtml',
+    'http://reg.bom.gov.au/tas/observations/hobart.shtml',
+    'http://reg.bom.gov.au/vic/observations/melbourne.shtml',
+    'http://reg.bom.gov.au/wa/observations/perth.shtml',
 ];
 
 $stations = [];

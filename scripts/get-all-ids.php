@@ -42,7 +42,7 @@ foreach ($urls as $url) {
     $content = curl_exec($handle);
     curl_close($handle);
 
-    if (preg_match_all('#products/(ID[^/]+/[^.]+).shtml">([^<]+)<#', $content, $matches)) {
+    if (preg_match_all('#products/(ID[A-Z0-9]+/[A-Z0-9]+\.\d+).shtml">([^<]+)<#', $content, $matches)) {
         foreach ($matches[1] as $index => $key) {
             $name = $matches[2][$index];
 

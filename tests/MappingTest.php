@@ -29,13 +29,13 @@ class MappingTest extends TestCase
     public function testStationsListIsComplete()
     {
         $stations = require_once(__DIR__ . '/../scripts/get-all-ids.php');
-        foreach ($stations as $key => list($_, $name, $latitude, $longitude)) {
-            $this->assertArrayHasKey($key, self::$all);
+        foreach ($stations as $id => $record) {
+            $this->assertArrayHasKey($id, self::$all);
 
-            $station = self::$all[$key];
-            $this->assertEquals($name, $station->name());
-            $this->assertEqualsWithDelta($latitude, $station->latitude(), 0.01);
-            $this->assertEqualsWithDelta($longitude, $station->longitude(), 0.01);
+            $station = self::$all[$id];
+            $this->assertEquals($record['name'], $station->name());
+            $this->assertEqualsWithDelta($record['latitude'], $station->latitude(), 0.01);
+            $this->assertEqualsWithDelta($record['longitude'], $station->longitude(), 0.01);
         }
     }
 

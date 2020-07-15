@@ -1,7 +1,5 @@
 <?php
 
-use Hamlet\BureauOfMeteorology\Stations;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $urls = [
@@ -31,10 +29,22 @@ $urls = [
 ];
 
 $stations = [];
-foreach (Stations::all() as $station) {
-    $stations[$station->key()] = [$station->key(), $station->name(), $station->latitude(), $station->longitude(), $station->height()];
+foreach (file(__DIR__ . '/../src/stations.csv') as $line) {
+    list($id, $name, $latitude, $longitude, $height, $products) = explode(',', trim($line));
+    $id = (int) $id;
+
+    $stations[$id] = [
+        'id' => $id,
+        'name' => $name,
+        'latitude' => (float) $latitude,
+        'longitude' => (float) $longitude,
+        'height' => (float) $height,
+        'products' => $products
+    ];
 }
+
 $need_update = array_keys($stations);
+$processed_ids = [];
 foreach ($urls as $url) {
     $handle = curl_init();
     curl_setopt($handle, CURLOPT_URL, $url);
@@ -42,11 +52,20 @@ foreach ($urls as $url) {
     $content = curl_exec($handle);
     curl_close($handle);
 
-    if (preg_match_all('#products/(ID[A-Z0-9]+/[A-Z0-9]+\.\d+).shtml">([^<]+)<#', $content, $matches)) {
-        foreach ($matches[1] as $index => $key) {
-            $name = $matches[2][$index];
+    if (preg_match_all('#products/((ID[A-Z0-9]+)/[A-Z0-9]+\.(\d+)).shtml">([^<]+)<#', $content, $matches)) {
+        foreach ($matches[3] as $index => $id) {
+            $product = $matches[2][$index];
+            $name = $matches[4][$index];
 
-            $details_url = "http://www.bom.gov.au/products/${key}.shtml";
+            if (isset($processed_ids[$id])) {
+                $stations[$id]['products'] .= ':' . $product;
+                continue;
+            } else {
+                $processed_ids[$id] = 1;
+            }
+
+
+            $details_url = "http://www.bom.gov.au/products/${product}/${product}.${id}.shtml";
             $handle = curl_init();
             curl_setopt($handle, CURLOPT_URL, $details_url);
             curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
@@ -59,38 +78,27 @@ foreach ($urls as $url) {
                 $height = (float) $details_matches[2][2];
             }
 
-            unset($need_update[$key]);
-            $stations[$key] = [$key, $name, $latitude, $longitude, $height];
+            unset($need_update[$id]);
+            $stations[$id] = [
+                'id' => $id,
+                'name' => $name,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'height' => $height,
+                'products' => $product
+            ];
         }
     }
 }
 
-foreach ($need_update as $key) {
-    $details_url = "http://www.bom.gov.au/products/${key}.shtml";
-    $handle = curl_init();
-    curl_setopt($handle, CURLOPT_URL, $details_url);
-    curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
-    $details_content = curl_exec($handle);
-    curl_close($handle);
-
-    if (preg_match('|Product not available|', $details_content)) {
-        unset($stations[$key]);
-        continue;
-    }
-
-    if (preg_match_all('#<b>(Lat|Lon|Height):</b>([^<]+)</#m', $details_content, $details_matches)) {
-        $latitude = (float) $details_matches[2][0];
-        $longitude = (float) $details_matches[2][1];
-        $height = (float) $details_matches[2][2];
-    }
-    list($_, $name) = $stations[$key];
-    $stations[$key] = [$key, $name, $latitude, $longitude, $height];
-}
-
 ksort($stations);
 $payload = '';
-foreach ($stations as $key => list($key, $name, $latitude, $longitude, $height)) {
-    $payload .= "$key,$name,$latitude,$longitude,$height\n";
+foreach ($stations as $station) {
+    $products = explode(':', $station['products']);
+    sort($products);
+    $products_string = join(':', array_unique($products));
+
+    $payload .= "$station[id],$station[name],$station[latitude],$station[longitude],$station[height],$products_string\n";
 }
 file_put_contents(__DIR__ . '/../src/stations.csv', $payload);
 

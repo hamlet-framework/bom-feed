@@ -16,8 +16,8 @@ class Station
 {
     const EARTH_RADIUS = 6371000;
 
-    /** @var string */
-    private $key;
+    /** @var int */
+    private $id;
 
     /** @var string */
     private $name;
@@ -31,18 +31,30 @@ class Station
     /** @var float */
     private $height;
 
-    public function __construct(string $key, string $name, float $latitude, float $longitude, float $height)
+    /** @var string[] */
+    private $products;
+
+    /**
+     * @param int $id
+     * @param string $name
+     * @param float $latitude
+     * @param float $longitude
+     * @param float $height
+     * @param string[] $products
+     */
+    public function __construct(int $id, string $name, float $latitude, float $longitude, float $height, array $products)
     {
-        $this->key = $key;
+        $this->id = $id;
         $this->name = $name;
         $this->latitude = $latitude;
         $this->longitude = $longitude;
         $this->height = $height;
+        $this->products = $products;
     }
 
-    public function key(): string
+    public function id(): int
     {
-        return $this->key;
+        return $this->id;
     }
 
     public function name(): string
@@ -65,9 +77,17 @@ class Station
         return $this->height;
     }
 
+    public function products(): array
+    {
+        return $this->products;
+    }
+
     public function feedUrl(): string
     {
-        return "http://www.bom.gov.au/fwo/{$this->key}.json";
+        $product = $this->products[0];
+        $id = $this->id;
+
+        return "http://www.bom.gov.au/fwo/${product}/${product}.${id}.json";
     }
 
     public function feed(): Envelope

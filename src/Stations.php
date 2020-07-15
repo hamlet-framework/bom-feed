@@ -22,8 +22,8 @@ class Stations
     {
         if (empty(self::$stations)) {
             foreach (file(__DIR__ . '/stations.csv') as $line) {
-                list($key, $name, $latitude, $longitude, $height) = explode(',', $line);
-                self::$stations[$key] = new Station($key, $name, (float) $latitude, (float) $longitude, (float) $height);
+                list($id, $name, $latitude, $longitude, $height, $products) = explode(',', trim($line));
+                self::$stations[$id] = new Station((int) $id, $name, (float) $latitude, (float) $longitude, (float) $height, explode(':', $products));
             }
         }
         return self::$stations;
@@ -48,7 +48,7 @@ class Stations
     {
         $distances = [];
         foreach (self::all() as $station) {
-            $distances[] = [$station->distanceTo($latitude, $longitude), $station];
+            $distances[$station->id()] = [$station->distanceTo($latitude, $longitude), $station];
         }
         usort($distances, function (array $a, array $b): int {
             return $a[0] <=> $b[0];

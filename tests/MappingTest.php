@@ -48,9 +48,9 @@ class MappingTest extends TestCase
         $this->assertEquals([
             'Melbourne (Olympic Park)',
             'St Kilda Harbour RMYS',
+            'Mt Pendergrast',
             'Essendon Airport',
             'Viewbank',
-            'Fawkner Beacon',
         ], $names);
     }
 }

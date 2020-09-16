@@ -73,7 +73,7 @@ class Data
 
     /**
      * @var string
-     * @psalm-var '-'|'Cirrus'|'Cirrocumulus'|'Cirrostratus'|'Altocumulus'|'Altostratus'|'Nimbostratus'|'Stratocumulus'|'Stratus'|'Cumulus'|'Towering Cumulus'|'Cumulonimbus'
+     * @psalm-var '-'|'Cirris'|'Cirrus'|'Cirrocumulus'|'Cirrostratus'|'Altocumulus'|'Altostratus'|'Nimbostratus'|'Stratocumulus'|'Stratus'|'Cumulus'|'Towering Cumulus'|'Cumulonimbus'
      */
     public $cloud_type;
 

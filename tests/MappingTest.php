@@ -41,16 +41,16 @@ class MappingTest extends TestCase
 
     public function testClosestTo()
     {
-        $stations = Stations::closestTo(-37.81, 144.96, 5);
+        $stations = Stations::closestTo(-23.69, 133.88, 5);
         $names = array_map(function (Station $station): string {
             return $station->name();
         }, $stations);
         $this->assertEquals([
-            'Melbourne (Olympic Park)',
-            'St Kilda Harbour RMYS',
-            'Mt Pendergrast',
-            'Essendon Airport',
-            'Viewbank',
+            'Alice Springs Airport',
+            'Arltunga',
+            'Territory Grape Farm',
+            'Jervois',
+            'Watarrka',
         ], $names);
     }
 }

@@ -130,7 +130,7 @@ class Data
     public $rel_hum;
 
     /**
-     * @var 'Calm'|'&lt;0.1'|'&lt;0.5'|'1'|'2'|'3'|'4'|'5'|'-'
+     * @var 'Calm'|'&lt;0.1'|'&lt;0.5'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'-'
      */
     public $sea_state;
 

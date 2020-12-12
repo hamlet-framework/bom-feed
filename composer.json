@@ -17,9 +17,9 @@
   },
   "minimum-stability": "dev",
   "require": {
+    "php": "^7 || ^8",
     "ext-json": "*",
     "ext-curl": "*",
-    "php": "^7.0",
     "hamlet-framework/json-mapper": "@stable"
   },
   "require-dev": {

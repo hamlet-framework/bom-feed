@@ -2,6 +2,7 @@
 
 namespace Hamlet\BureauOfMeteorology;
 
+use Hamlet\Cast\CastException;
 use PHPUnit\Framework\TestCase;
 
 class MappingTest extends TestCase
@@ -19,10 +20,14 @@ class MappingTest extends TestCase
 
     public function testFieldMapping()
     {
+        $this->assertTrue(true);
         for ($i = 0; $i < 100; $i++) {
             $station = self::$all[array_rand(self::$all)];
-            $station->feed();
-            $this->assertTrue(true);
+            try {
+                $station->feed();
+            } catch (CastException $exception) {
+                $this->fail($exception->getMessage());
+            }
         }
     }
 

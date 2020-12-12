@@ -2,6 +2,7 @@
 
 namespace Hamlet\BureauOfMeteorology;
 
+use Hamlet\BureauOfMeteorology\Feed\FeedException;
 use Hamlet\Cast\CastException;
 use PHPUnit\Framework\TestCase;
 
@@ -12,10 +13,12 @@ class MappingTest extends TestCase
      */
     private static $all = [];
 
-    public static function setUpBeforeClass()
+    /**
+     * @beforeClass
+     */
+    public static function beforeClass()
     {
         self::$all = Stations::all();
-        parent::setUpBeforeClass();
     }
 
     public function testFieldMapping()
@@ -27,6 +30,7 @@ class MappingTest extends TestCase
                 $station->feed();
             } catch (CastException $exception) {
                 $this->fail($exception->getMessage());
+            } catch (FeedException $exception) {
             }
         }
     }

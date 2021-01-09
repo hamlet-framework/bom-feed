@@ -27,7 +27,7 @@
     "squizlabs/php_codesniffer": "@stable",
     "php-parallel-lint/php-parallel-lint": "@stable",
     "vimeo/psalm": "@stable",
-    "symfony/polyfill-mbstring": "@stable"
+    "symfony/polyfill-mbstring": "<=1.20.0"
   },
   "autoload": {
     "psr-4": {
